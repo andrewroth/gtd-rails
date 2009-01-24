@@ -1,0 +1,12 @@
+log/*.log
+log/*.pid
+tmp/**/*
+config/database.yml
+config/amazon_s3.yml
+.DS_Store
+doc/api
+coverage
+config/deploy.rb
+public/imports
+public/javascripts/all.js
+public/stylesheets/all.css
