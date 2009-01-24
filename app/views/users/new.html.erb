@@ -1,13 +1,26 @@
-<h1>New user</h1>
+<div class="indent">
+<div class="rabbitTrail">signup</div>
+<div class="topBox">
+  <h1 class="title">Sign Up</h1>
+  <div class="text">
+    <% form_for @user do |f| %>
+      <table class="form_TABLE">
+        <tbody>
+          <tr><td class="col1"><label>First Name:</label></td>  <td class="col2"><%= f.text_field :first, :size => 30 %>
+                        </td></tr>
+          <tr><td class="col1"><label>Last Name:</label></td>   <td class="col2"><%= f.text_field :last, :size => 30 %>
+                        </td></tr>
+          <tr><td class="col1"><label>E-mail:</label></td>      <td class="col2"><%= f.text_field :email, :size => 30 %>
+                        </td></tr>
+          <tr><td class="col1"><label>Password:</label></td>    <td class="col2"><%= password_field_tag :pass, {}, :size => 30 %>
+                        </td></tr>
+        </tbody>
+      </table>
+      <div class="inputFake">
+        <%= link_to_function 'Sign Up', 'document.getElementById("new_user").submit();' %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-
-  <%= render :partial => 'form', :locals => { :f => f } %>
-
-  <p>
-    <%= f.submit "Create" %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', users_path %>
+</div>

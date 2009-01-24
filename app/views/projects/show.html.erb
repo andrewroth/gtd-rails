@@ -1,7 +1,5 @@
-<div class="indent">
-<div class="rabbitTrail">projects</div>
 <div class="topBox">
-  <h1 class="title"><div><a href="?id=12&amp;action=prev">« Previous</a> <a href="?id=12&amp;action=next">Next »</a></div>New Test Project</h1>
+  <h1 class="title"><div><a href="?id=12&amp;action=prev">« Previous</a> <a href="?id=12&amp;action=next">Next »</a></div><%= @project.name %></h1>
   <div class="text">
     <div class="project">
       <table class="common_TABLE">
@@ -9,22 +7,22 @@
           <tr><th colspan="2"/></tr> <!-- important for the top border -->
         </thead>
         <tfoot>
-          <tr><td colspan="2"><div class="tableLinks"><a href="/user/projectSignup.php?id=12">Get Involved</a></div></td></tr>
+          <tr><td colspan="2"><div class="tableLinks"><a href="/project_member/new">Get Involved</a></div></td></tr>
         </tfoot>
         <tbody>
           <tr><td class="col1">Purpose</td>     <td class="col2"><% @project.purpose %></td></tr>
-          <tr><td class="col1">Created</td>     <td class="col2">Nov 4, 2008</td></tr>
-          <tr><td class="col1">Project Type</td>    <td class="col2">Idea</td></tr>
-          <tr><td class="col1">Description</td>   <td class="col2"/></tr>
-          <tr><td class="col1">Skills Needed</td>   <td class="col2">none</td></tr>
-          <tr><td class="col1">Resources Needed</td>  <td class="col2"/></tr>
-          <tr><td class="col1">Estimated Length</td>  <td class="col2">2 months, 12 days</td></tr>
-          <tr><td class="col1">Status</td>      <td class="col2">tired</td></tr>
-          <tr><td class="col1">Scope</td>       <td class="col2">Small</td></tr>
-          <tr><td class="col1">Seeking Volunteers</td><td class="col2">N</td></tr>
-          <tr><td class="col1">Hiring</td>      <td class="col2">N</td></tr>
-          <tr><td class="col1">Website</td>     <td class="col2"><a target="_blank" href="http://www.nathanakers.net">http://www.nathanakers.net</a></td></tr>
-          <tr class="last"><td class="col1">Hosting home</td>   <td class="col2">Other</td></tr>
+          <tr><td class="col1">Created</td>     <td class="col2"><% @project.created %></td></tr>
+          <tr><td class="col1">Project Type</td>    <td class="col2"><%= @project.type %></td></tr>
+          <tr><td class="col1">Description</td>   <td class="col2"/><%= @project.description %></tr>
+          <tr><td class="col1">Skills Needed</td>   <td class="col2"><%= @project.skillsneeded %></td></tr>
+          <tr><td class="col1">Resources Needed</td>  <td class="col2"/><%= @project.resourcesneeded %></tr>
+          <tr><td class="col1">Estimated Length</td>  <td class="col2"><%= @project.estimateddays %> days</td></tr>
+          <tr><td class="col1">Status</td>      <td class="col2"><%= @project.status %></td></tr>
+          <tr><td class="col1">Scope</td>       <td class="col2"><%= @project.scope %></td></tr>
+          <tr><td class="col1">Seeking Volunteers</td><td class="col2"><%= @project.isseekingvolunteers %></td></tr>
+          <tr><td class="col1">Hiring</td>      <td class="col2"><%= @project.ishiring %></td></tr>
+          <tr><td class="col1">Website</td>     <td class="col2"><a target="_blank" href="<%= @project.website %>"><%= @project.website %></a></td></tr>
+          <tr class="last"><td class="col1">Hosting home</td>   <td class="col2"><%= @project.hostinghome %></td></tr>
         </tbody>
       </table>
     </div>
@@ -32,7 +30,8 @@
 </div>
 <div class="lowerBox">
   <h1 class="title">Project members</h1>
-  <div class="text">        <ul class="projectMembers">
+  <div class="text">
+    <ul class="projectMembers">
           <li>
             <img alt="profile picture" src="images/page1_img3.jpg"/>
             <div class="memberInfo">
@@ -42,7 +41,7 @@
 </div>
             </div>
           </li>
-        </ul>       <ul class="projectMembers">
+    </ul>       <ul class="projectMembers">
           <li>
             <img alt="profile picture" src="images/"/>
             <div class="memberInfo">
@@ -51,7 +50,7 @@
               <div class="bio"/>
             </div>
           </li>
-        </ul> </div>
+    </ul>
+  </div>
 </div>
 
-</div>
