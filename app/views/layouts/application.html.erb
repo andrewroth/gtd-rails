@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Global Tech Dev &raquo; Home</title>
+    <%= stylesheet_link_tag 'style' %> 
+  </head>
+
+  <body class="index">
+
+<?php
+echo $main;
+?>
+
+  <div class="main"><div class="banner"><div class="bannerTop"><form class="searchFormTop" action="/search.php" method="get"><input class="field" name="q" type="text" size="22" /><input class="submit" id="submit" name="submit" type="submit" value="Search Projects" /></form><form class="loginFormTop" action="/login.php?logout=1" enctype="multipart/form-data" method="post"><input class="submit" type="submit" value="Logout" /></form></div><div class="bannerBot"><ul class="menu"><li class="Home"><a href="/user/"><span>Home</span></a></li><li class="About"><a href="/about.php"><span>About</span></a></li><li class="selected Projects"><a href="/projects.php"><span>Projects</span></a></li><li class="Profile"><a href="/user/profile.php"><span>Profile</span></a></li></ul></div></div>
+
+    <div class="content">
+      <table class="content_TABLE">
+        <tbody>
+          <tr>
+            <td class="left">
+              <div class="indent">
+                <%= yield %>
+              </div>
+            </td>
+            <td class="right">
+              <div class="indent alt">
+                <div class="text">
+                  <a class="bigButton" href="/signup.php"><span>Sign Up to Get Involved</span></a>
+                </div>
+              </div>
+              <div class="indent">
+                <img src="/images4/GTD_right_bgTop.gif" alt="" />
+                <div class="text">
+                  <h2 class="title">Recent Projects</h2>
+                  getInfoForLastXProjects(3)
+                  <div class="links">
+                    <a href="/projects.php">View All</a>
+                  </div>
+                </div>
+                <img src="/images4/GTD_right_bgBot.gif" alt="" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span class="validator">
+        <a href="http://validator.w3.org/check?uri=http://www.globaltechdev.org/">XHTML</a>
+        <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.globaltechdev.org/style.css">CSS</a>
+      </span>
+      <span class="copyright">
+        Copyright &copy; <%= Time.now.year %> GlobalTechDev.org &bull; <a href="/about.php">About Us</a> &bull; <a href="/contact.php">Contact Us</a>
+      </span>
+    </div>
+  </body>
+</html>
