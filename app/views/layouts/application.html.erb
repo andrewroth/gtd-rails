@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Global Tech Dev &raquo; Home</title>
+    <%= stylesheet_link_tag 'style' %> 
+  </head>
+
+  <body class="index">
+
+<?php
+echo $main;
+echo displayBanner('Home', $_SESSION['guid']);
+?>
+    <div class="content">
+      <table class="content_TABLE">
+        <tbody>
+          <tr>
+            <td class="left">
+              <div class="indent">
+                <div class="rabbitTrail">home</div>
+                <div class="topBox">
+                  <h1 class="title">Welcome to Global Tech Dev<span class="subtitle">Use your programming skills to change the world!</span></h1>
+                  <div class="text">
+                    <p>GTD is a site that allows GCX members to connect on what projects they are working on.</p>
+                    <p>The purpose of GTD is to help you connect with other people interested in expanding ministry ideas around the globe.</p>
+                    <p><a href="/login.php">Login</a> or <a href="/signup.php">Signup</a> to get involved.</p>
+                  </div>
+                  <div class="links">
+                    <a href="about.php">Read more</a>
+                    <a href="signup.php">Get Involved</a>
+                  </div>
+                </div>
+
+                <div class="lowerBox">
+                  <h1 class="title">What can I do?</h1>
+                  <ul class="links_mid">
+                    <li class="links_mid1">
+                      <span>Collaborate on a project.<a href="/projects.php">join an existing project</a></span>
+                    </li>
+                    <li class="links_mid2">
+                      <span>Have your own idea?<a href="/user/createProject.php">create a new project</a></span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </td>
+            <td class="right">
+              <div class="indent alt">
+                <div class="text">
+                  <a class="bigButton" href="/signup.php"><span>Sign Up to Get Involved</span></a>
+                </div>
+              </div>
+              <div class="indent">
+                <img src="/images4/GTD_right_bgTop.gif" alt="" />
+                <div class="text">
+                  <h2 class="title">Recent Projects</h2>
+                  getInfoForLastXProjects(3)
+                  <div class="links">
+                    <a href="/projects.php">View All</a>
+                  </div>
+                </div>
+                <img src="/images4/GTD_right_bgBot.gif" alt="" />
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span class="validator">
+        <a href="http://validator.w3.org/check?uri=http://www.globaltechdev.org/">XHTML</a>
+        <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.globaltechdev.org/style.css">CSS</a>
+      </span>
+      <span class="copyright">
+        Copyright &copy; <%= Time.now.year %> GlobalTechDev.org &bull; <a href="/about.php">About Us</a> &bull; <a href="/contact.php">Contact Us</a>
+      </span>
+    </div>
+  </body>
+</html>
