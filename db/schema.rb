@@ -12,45 +12,45 @@
 ActiveRecord::Schema.define(:version => 0) do
 
   create_table "project", :force => true do |t|
-    t.boolean   "active",                                  :default => true, :null => false
-    t.string    "name",                :limit => 45,                         :null => false
+    t.boolean   "active",                                  :default => true, :null => true
+    t.string    "name",                :limit => 45,                         :null => true
     t.string    "purpose"
     t.text      "description"
     t.string    "website"
-    t.string    "creator",             :limit => 100,                        :null => false
-    t.timestamp "created",                                                   :null => false
-    t.text      "skillsneeded",        :limit => 16777215,                   :null => false
-    t.integer   "estimateddays",                                             :null => false
-    t.string    "status",                                                    :null => false
-    t.string    "scope",               :limit => 0,                          :null => false
-    t.text      "resourcesneeded",     :limit => 16777215,                   :null => false
-    t.string    "isseekingvolunteers", :limit => 1,        :default => "N",  :null => false
-    t.string    "ishiring",            :limit => 1,        :default => "N",  :null => false
-    t.string    "type",                :limit => 0,                          :null => false
-    t.string    "hostinghome",         :limit => 0,                          :null => false
+    t.string    "creator",             :limit => 100,                        :null => true
+    t.timestamp "created",                                                   :null => true
+    t.text      "skillsneeded",        :limit => 16777215,                   :null => true
+    t.integer   "estimateddays",                                             :null => true
+    t.string    "status",                                                    :null => true
+    t.string    "scope",               :limit => 0,                          :null => true
+    t.text      "resourcesneeded",     :limit => 16777215,                   :null => true
+    t.string    "isseekingvolunteers", :limit => 1,        :default => "N",  :null => true
+    t.string    "ishiring",            :limit => 1,        :default => "N",  :null => true
+    t.string    "type",                :limit => 0,                          :null => true
+    t.string    "hostinghome",         :limit => 0,                          :null => true
   end
 
   add_index "project", ["description", "skillsneeded", "resourcesneeded"], :name => "description"
 
   create_table "project_member", :force => true do |t|
-    t.string    "guid",    :limit => 100,                       :null => false
-    t.integer   "pid",                                          :null => false
-    t.boolean   "active",                 :default => true,     :null => false
-    t.string    "role",    :limit => 45,  :default => "Member", :null => false
+    t.string    "guid",    :limit => 100,                       :null => true
+    t.integer   "pid",                                          :null => true
+    t.boolean   "active",                 :default => true,     :null => true
+    t.string    "role",    :limit => 45,  :default => "Member", :null => true
     t.text      "skills"
-    t.timestamp "created",                                      :null => false
+    t.timestamp "created",                                      :null => true
   end
 
   create_table "user", :force => true do |t|
-    t.boolean   "active",                             :default => true, :null => false
-    t.string    "guid",           :limit => 100,                        :null => false
-    t.string    "email",          :limit => 45,                         :null => false
-    t.string    "first",          :limit => 45,                         :null => false
-    t.string    "last",           :limit => 45,                         :null => false
-    t.timestamp "created",                                              :null => false
-    t.text      "bio",            :limit => 16777215,                   :null => false
-    t.string    "profilepicture",                                       :null => false
-    t.text      "skillkeywords",  :limit => 16777215,                   :null => false
+    t.boolean   "active",                             :default => true, :null => true
+    t.string    "guid",           :limit => 100,                        :null => true
+    t.string    "email",          :limit => 45,                         :null => true
+    t.string    "first",          :limit => 45,                         :null => true
+    t.string    "last",           :limit => 45,                         :null => true
+    t.timestamp "created",                                              :null => true
+    t.text      "bio",            :limit => 16777215,                   :null => true
+    t.string    "profilepicture",                                       :null => true
+    t.text      "skillkeywords",  :limit => 16777215,                   :null => true
   end
 
 end
