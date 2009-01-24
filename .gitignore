@@ -10,3 +10,4 @@ config/deploy.rb
 public/imports
 public/javascripts/all.js
 public/stylesheets/all.css
+*.swp
