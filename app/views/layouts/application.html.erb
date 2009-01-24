@@ -11,7 +11,21 @@
 echo $main;
 ?>
 
-  <div class="main"><div class="banner"><div class="bannerTop"><form class="searchFormTop" action="/search.php" method="get"><input class="field" name="q" type="text" size="22" /><input class="submit" id="submit" name="submit" type="submit" value="Search Projects" /></form><form class="loginFormTop" action="/login.php?logout=1" enctype="multipart/form-data" method="post"><input class="submit" type="submit" value="Logout" /></form></div><div class="bannerBot"><ul class="menu"><li class="Home"><a href="/user/"><span>Home</span></a></li><li class="About"><a href="/about.php"><span>About</span></a></li><li class="selected Projects"><a href="/projects.php"><span>Projects</span></a></li><li class="Profile"><a href="/user/profile.php"><span>Profile</span></a></li></ul></div></div>
+  <div class="main"><div class="banner"><div class="bannerTop"><form class="searchFormTop" action="/search.php" method="get"><input class="field" name="q" type="text" size="22" /><input class="submit" id="submit" name="submit" type="submit" value="Search Projects" /></form>
+    <% if @user -%>
+    <form class="loginFormTop" action="/login.php?logout=1" enctype="multipart/form-data" method="post">
+      <input class="submit" type="submit" value="Logout" />
+    </form>
+    <% else -%>
+    <a href="signup.php" class="signupTop">sign up</a>
+    <form method="post" enctype="multipart/form-data" action="/login.php" class="loginFormTop"><label class="name">email</label><input type="text" size="22" name="user" class="field user"/><label class="pw">password</label><input type="password" size="16" name="pass" class="field pass"/><input type="submit" value="Login" class="submit"/></form>
+    <% end -%>
+  </div>
+  <div class="bannerBot">
+    <ul class="menu">
+      <li class="Home"><a href="/dashboard/home"><span>Home</span></a></li><li class="About"><a href="/dashboard/about"><span>About</span></a></li><li class="selected Projects"><a href="/projects"><span>Projects</span></a></li><li class="Profile"><a href="/user/profile.php"><span>Profile</span></a></li>
+    </ul>
+  </div>
 
     <div class="content">
       <table class="content_TABLE">

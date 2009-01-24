@@ -1,0 +1,30 @@
+<div class="indent"><div class="rabbitTrail">contact</div>
+<div class="topBox">
+    <h1 class="title">Contact Us!</h1>
+    <div class="text">
+      <h5>address</h5>
+      <p>100 Lake Hart Dr<br/>Orlando, FL 32828</p>
+      <h5>phone number</h5>
+      <p>+1 (407) 826-2000</p>
+      <h5>email</h5>
+      <p><a href="mailto:mikethacker@globaltechdev.org">Click here to email us!</a></p>
+      
+    </div>
+  </div>
+</div>
+<div class="lowerBox">
+  <h1 class="title">Contact Form</h1>
+  <div class="text">
+    <%= form_tag '/dashboard/send_contact', :id => 'form' %>
+      <table>
+        <tbody><tr><td class="right_text">Name</td><td><input type="text" name="name"/></td></tr>
+        <tr><td class="right_text">Email</td><td><input type="text" name="email"/></td></tr>
+        <tr><td class="right_text">Phone</td><td><input type="text" name="phone"/></td></tr>
+        <tr><td class="right_text">Message</td><td><%= text_area_tag 'message', {}, :rows => 8, :cols => 40, :name => 'message' %></td></tr>
+      </tbody></table>
+      <div class="inputFake">
+        <a onclick="document.getElementById('form').submit()" href="#">Send</a>
+      </div>
+    </form>
+  </div>
+</div>
