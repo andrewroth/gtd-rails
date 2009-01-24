@@ -1,0 +1,18 @@
+<h1>Listing project_members</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for project_member in @project_members %>
+  <tr>
+    <td><%= link_to 'Show', project_member %></td>
+    <td><%= link_to 'Edit', edit_project_member_path(project_member) %></td>
+    <td><%= link_to 'Destroy', project_member, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New project_member', new_project_member_path %>
