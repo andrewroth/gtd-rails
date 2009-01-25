@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  before_filter CASClient::Frameworks::Rails::GatewayFilter, :login_from_cas unless Rails.env.test?
 
   helper :all # include all helpers, all the time
 
@@ -13,5 +14,14 @@ class ApplicationController < ActionController::Base
   # See ActionController::Base for details 
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
-  # filter_parameter_logging :password
+  filter_parameter_logging :password
+  
+  def login_from_cas
+    cas_user = session[:cas_user]
+    u = false
+    if cas_user
+      u = User.find_or_create_from_cas(session[:cas_last_valid_ticket])
+      self.current_user = u
+    end
+  end
 end

@@ -11,3 +11,4 @@ public/imports
 public/javascripts/all.js
 public/stylesheets/all.css
 *.swp
+cas_sess.*
