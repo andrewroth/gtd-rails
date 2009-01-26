@@ -1,11 +1,14 @@
+<td class="left">
 <div class="indent">
-<div class="rabbitTrail">welcome</div>
-<div class="topBox">
-  <h1 class="title">Welcome to GTD, <%= @user.first %> <%= @user.last %></h1>
-  <div class="links">
-    <a href="/dashboard/contact">Contact Us</a>
-    <a href="/users/logout">Logout</a>
+  <div class="rabbitTrail">welcome</div>
+  <div class="topBox">
+    <h1 class="title">Welcome to GTD, <%= current_user.first %> <%= current_user.last %></h1>
+    <div class="links">
+      <a href="/dashboard/contact">Contact Us</a>
+      <a href="/users/logout">Logout</a>
+    </div>
   </div>
-</div>
 
 </div>
+</td>
+<%= render :partial => 'right_bar' %>

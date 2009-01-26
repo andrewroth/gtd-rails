@@ -9,48 +9,78 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20090125233008) do
 
-  create_table "project", :force => true do |t|
-    t.boolean   "active",                                  :default => true, :null => true
-    t.string    "name",                :limit => 45,                         :null => true
-    t.string    "purpose"
-    t.text      "description"
-    t.string    "website"
-    t.string    "creator",             :limit => 100,                        :null => true
-    t.timestamp "created",                                                   :null => true
-    t.text      "skillsneeded",        :limit => 16777215,                   :null => true
-    t.integer   "estimateddays",                                             :null => true
-    t.string    "status",                                                    :null => true
-    t.string    "scope",               :limit => 0,                          :null => true
-    t.text      "resourcesneeded",     :limit => 16777215,                   :null => true
-    t.string    "isseekingvolunteers", :limit => 1,        :default => "N",  :null => true
-    t.string    "ishiring",            :limit => 1,        :default => "N",  :null => true
-    t.string    "type",                :limit => 0,                          :null => true
-    t.string    "hostinghome",         :limit => 0,                          :null => true
+  create_table "profile_pictures", :force => true do |t|
+    t.integer "person_id"
+    t.integer "parent_id"
+    t.integer "size"
+    t.integer "height"
+    t.integer "width"
+    t.string  "content_type"
+    t.string  "filename"
+    t.string  "thumbnail"
+    t.date    "uploaded_date"
   end
 
-  add_index "project", ["description", "skillsneeded", "resourcesneeded"], :name => "description"
-
-  create_table "project_member", :force => true do |t|
-    t.string    "guid",    :limit => 100,                       :null => true
-    t.integer   "pid",                                          :null => true
-    t.boolean   "active",                 :default => true,     :null => true
-    t.string    "role",    :limit => 45,  :default => "Member", :null => true
-    t.text      "skills"
-    t.timestamp "created",                                      :null => true
+  create_table "project_members", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.boolean  "active",     :default => true
+    t.string   "role"
+    t.string   "skills"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "user", :force => true do |t|
-    t.boolean   "active",                             :default => true, :null => true
-    t.string    "guid",           :limit => 100,                        :null => true
-    t.string    "email",          :limit => 45,                         :null => true
-    t.string    "first",          :limit => 45,                         :null => true
-    t.string    "last",           :limit => 45,                         :null => true
-    t.timestamp "created",                                              :null => true
-    t.text      "bio",            :limit => 16777215,                   :null => true
-    t.string    "profilepicture",                                       :null => true
-    t.text      "skillkeywords",  :limit => 16777215,                   :null => true
+  add_index "project_members", ["project_id", "user_id"], :name => "index_project_members_on_project_id_and_user_id", :unique => true
+  add_index "project_members", ["user_id"], :name => "user_id"
+
+  create_table "projects", :force => true do |t|
+    t.boolean  "active",                               :default => true
+    t.boolean  "is_seeking_volunteers",                :default => true
+    t.boolean  "is_hiring",                            :default => false
+    t.string   "name",                  :limit => 500
+    t.string   "purpose",               :limit => 500
+    t.string   "website",               :limit => 500
+    t.string   "type",                  :limit => 500
+    t.string   "status",                :limit => 500
+    t.string   "scope",                 :limit => 500
+    t.string   "hosting_home",          :limit => 500
+    t.text     "description"
+    t.text     "skills_needed"
+    t.text     "resources_needed"
+    t.integer  "creator_id"
+    t.integer  "estimated_days"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "users", :force => true do |t|
+    t.string   "first",                     :limit => 100,  :default => ""
+    t.string   "last",                      :limit => 100,  :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "guid",                      :limit => 100
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+    t.boolean  "active",                                    :default => true
+    t.text     "bio"
+    t.string   "skillkeywords",             :limit => 2000, :default => ""
+    t.string   "profilepicture"
+  end
+
+  add_index "users", ["guid"], :name => "index_users_on_guid", :unique => true
 
 end

@@ -9,7 +9,7 @@ module AuthenticatedSystem
     # Accesses the current user from the session.
     # Future calls avoid the database because nil is not equal to false.
     def current_user
-      @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_user == false
+      @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie || login_from_cas) unless @current_user == false
     end
 
     # Store the given user id in the session.
@@ -112,6 +112,15 @@ module AuthenticatedSystem
     def login_from_basic_auth
       authenticate_with_http_basic do |login, password|
         self.current_user = User.authenticate(login, password)
+      end
+    end
+  
+    def login_from_cas
+      cas_user = session[:cas_user]
+      u = false
+      if cas_user
+        u = User.find_or_create_from_cas(session[:cas_last_valid_ticket])
+        self.current_user = u
       end
     end
     
