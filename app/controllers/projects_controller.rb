@@ -2,10 +2,11 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.find(:all)
-
+    @projects = Project.find(:all, :order => "created_at desc")
+    @project = @projects.first
+    @index = @projects.index(@project)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :action => :show }
       format.xml  { render :xml => @projects }
     end
   end
@@ -13,8 +14,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
+    @projects = Project.find(:all, :order => "created_at desc")
     @project = Project.find(params[:id])
-
+    @index = @projects.index(@project)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @project }
