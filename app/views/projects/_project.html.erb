@@ -1,0 +1,7 @@
+        <h3 class="date"><%= project.created_at.to_s(:numeric) %></h3>
+        <div class="projectBox">
+          <%- link_to(project) do -%>
+            <b><%= project.name %></b><br/>
+            <span><%= project.description %></span>
+          <%- end -%>
+        </div>

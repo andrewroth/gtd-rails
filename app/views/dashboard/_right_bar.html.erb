@@ -1,0 +1,20 @@
+<td class="right">
+  <%- unless current_user -%>
+  <div class="indent alt">
+    <div class="text">
+      <a class="bigButton" href="/signup.php"><span>Sign Up to Get Involved</span></a>
+    </div>
+  </div>
+  <%- end -%>
+  <div class="indent">
+    <img src="/images4/GTD_right_bgTop.gif" alt="" />
+    <div class="text">
+      <h2 class="title">Recent Projects</h2>
+      getInfoForLastXProjects(3)
+      <div class="links">
+        <a href="/projects.php">View All</a>
+      </div>
+    </div>
+    <img src="/images4/GTD_right_bgBot.gif" alt="" />
+  </div>
+</td>
