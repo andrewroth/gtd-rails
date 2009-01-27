@@ -38,7 +38,10 @@ task :after_update_code, :roles => :app do
   run "ln -s #{release_path}/public #{release_path}/public/expires"
   
   # create the tmp folders
-  run "mkdir -p -m 770 #{shared_path}/tmp/{cache,sessions,sockets,pids}"
+  run "mkdir -p -m 770 #{shared_path}/tmp/cache"
+  run "mkdir -p -m 770 #{shared_path}/tmp/sessions"
+  run "mkdir -p -m 770 #{shared_path}/tmp/sockets"
+  run "mkdir -p -m 770 #{shared_path}/tmp/pids"
   run "rm -Rf #{release_path}/tmp"
   run "ln -s #{shared_path}/tmp #{release_path}/tmp"
 end

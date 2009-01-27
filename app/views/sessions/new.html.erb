@@ -9,16 +9,16 @@
 	      <p><%= flash[:error] %></p>
 	      <%- end -%>
 				<p>Enter your email and password below, or <a href="/signup">click here to sign up</a>.</p>
-    		<form name="login" id="login" action="/login" enctype="multipart/form-data" method="post">
+	      <%- form_tag '/sessions/create', :id => 'login' do  -%>
     			<table class="form_TABLE">
-    				<tr><td class="col1"><label>E-mail:</label></td>	<td class="col2"><input type="text" name="user" size="40" /></td></tr>
+    				<tr><td class="col1"><label>E-mail:</label></td>	<td class="col2"><input type="text" name="username" size="40" /></td></tr>
 
-    				<tr><td class="col1"><label>Password:</label></td>	<td class="col2"><input type="password" name="pass" size="40" /></td></tr>
+    				<tr><td class="col1"><label>Password:</label></td>	<td class="col2"><input type="password" name="password" size="40" /></td></tr>
     							</table>
     			<div class="inputFake">
     				<a class="link" href="#" onclick="document.getElementById('login').submit(); return false;">Login</a>
     			</div>
-    		</form>
+        <%- end -%>
     	</div>
 
     </div>

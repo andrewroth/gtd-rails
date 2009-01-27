@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    logout_keeping_session!
     form_params = {:username => params[:username], :password => params[:password], :service => new_session_url }
     cas_url = 'https://signin.mygcx.org/cas/login'
     agent = WWW::Mechanize.new
@@ -18,6 +17,7 @@ class SessionsController < ApplicationController
     unless result_query && result_query.include?('BadPassword')
       flash[:notice] = "Logged in successfully"
       redirect_to(cas_url + '?service=' + new_session_url + '&username=' + params[:username] + '&password=' + params[:password])
+      return
     else
       note_failed_signin
       @login       = params[:login]
@@ -29,7 +29,6 @@ class SessionsController < ApplicationController
   def destroy
     logout_killing_session!
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
   end
 
 protected
