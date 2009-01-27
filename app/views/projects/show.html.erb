@@ -2,6 +2,7 @@
   <div class="indent">
     <div class="rabbitTrail">projects</div>
     <div class="topBox">
+      <%- if @project -%>
       <h1 class="title">
         <div>
           <%- unless @project == @projects.first -%><%= link_to('« Previous', @projects[@index - 1]) %><%- end %>
@@ -13,9 +14,10 @@
         <%= render :partial => 'project_info' %>
 
     	</div>
-
+      <%- end -%>
     </div>
     <div class="lowerBox">
+      <%- if @project -%>
     	<h1 class="title">Project members</h1>
     	<div class="text">		
     	  <%- if current_user -%>		
@@ -25,6 +27,7 @@
           <p><a href="/login">Login</a> to see them.</p>
         <%- end -%>
   		</div>
+  		<%- end -%>
     </div>
   </div>
 </td>
