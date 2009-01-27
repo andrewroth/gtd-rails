@@ -1,16 +1,26 @@
-<h1>Log In</h1>
+<td class="utility">
+  <div class="indent">
+    <div class="rabbitTrail">login</div>
+      <div class="topBox">
 
-<% form_tag session_path do -%>
-<p><%= label_tag 'login' %><br />
-<%= text_field_tag 'login', @login %></p>
+    	<h1 class="title">Login<span class="subtitle">You must login to continue!</span></h1>
+    	<div class="text">
+	      <%- if flash[:error] -%>
+	      <p><%= flash[:error] %></p>
+	      <%- end -%>
+				<p>Enter your email and password below, or <a href="/signup">click here to sign up</a>.</p>
+    		<form name="login" id="login" action="/login" enctype="multipart/form-data" method="post">
+    			<table class="form_TABLE">
+    				<tr><td class="col1"><label>E-mail:</label></td>	<td class="col2"><input type="text" name="user" size="40" /></td></tr>
 
-<p><%= label_tag 'password' %><br/>
-<%= password_field_tag 'password', nil %></p>
+    				<tr><td class="col1"><label>Password:</label></td>	<td class="col2"><input type="password" name="pass" size="40" /></td></tr>
+    							</table>
+    			<div class="inputFake">
+    				<a class="link" href="#" onclick="document.getElementById('login').submit(); return false;">Login</a>
+    			</div>
+    		</form>
+    	</div>
 
-<!-- Uncomment this if you want this functionality
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+    </div>
+  </div>
+</td>

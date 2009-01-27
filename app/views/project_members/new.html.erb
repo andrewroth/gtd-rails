@@ -1,0 +1,53 @@
+<td class="left">
+  <div class="indent">
+    <div class="rabbitTrail"><a href="/projects">projects</a> // project signup</div>	
+    <div class="topBox">
+
+    	<div class="indent">
+    		<h1 class="title">Project Info</h1>
+    		<div class="text">
+    			<h3 class="title"><%= @project.name %></h3>
+    			<p><%= @project.description %></p>
+    		</div>
+    		<div class="links">
+    			<a href="/projects">Back to all projects</a>
+
+    		</div>
+    	</div>
+    </div>
+    <div class="lowerBox">
+    	<h1 class="title">Sign Up For This Project</h1>
+    	<div class="text">
+    		<%- form_for @project_member do |f| -%>
+    		<table>
+    			<tbody>
+
+    				<tr><td class="col1">Name</td>	<td><input type="text" name="name" size="40" value="<%= current_user.full_name %>" disabled="disabled" /></td></tr>
+    				<tr><td class="col1">Email</td>	<td><input type="text" name="email" size="40" value="<%= current_user.email %>" disabled="disabled" /></td></tr>
+    				<tr><td class="col1">Skills</td><td><input type="text" name="skills" size="40" value="" /></td></tr>
+    		</table>
+    		<div class="inputFake">
+
+    			<a href="/user/projectSignup.php" onclick="document.getElementById('new_project_member').submit(); return false;">Sign Up</a>
+    		</div>
+    	<%- end -%>
+    	</div>
+    </div>
+		
+  </div>
+</td>
+<td class="right">
+  <%- unless @project.project_members.empty? -%>
+  <div class="indent"><img src="/images4/GTD_right_bgTop.gif" alt="" />
+    <div class="text">
+      <h2 class="title">Already working on this project:</h2>
+      <ul class="list_1">
+        <%- @project.project_members.each do |pm| -%>
+        <li><%= link_to(pm.user.full_name, pm.user) %> (<%= pm.role %>)</li>
+        <%- end -%>
+      </ul>
+    </div>
+  <img src="/images4/GTD_right_bgBot.gif" alt="" />
+  </div>
+  <%- end -%>
+</td>

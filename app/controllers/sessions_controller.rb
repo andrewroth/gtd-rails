@@ -2,22 +2,22 @@
 class SessionsController < ApplicationController
 
   # render new.rhtml
-  def new
+  def new    
+    if logged_in?
+      redirect_back_or_default(user_path(self.current_user))
+    end
   end
 
   def create
     logout_keeping_session!
-    user = User.authenticate(params[:login], params[:password])
-    if user
-      # Protects against session fixation attacks, causes request forgery
-      # protection if user resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset_session
-      self.current_user = user
-      new_cookie_flag = (params[:remember_me] == "1")
-      handle_remember_cookie! new_cookie_flag
-      redirect_back_or_default('/')
+    form_params = {:username => params[:username], :password => params[:password], :service => new_session_url }
+    cas_url = 'https://signin.mygcx.org/cas/login'
+    agent = WWW::Mechanize.new
+    page = agent.post(cas_url, form_params)
+    result_query = page.uri.query
+    unless result_query && result_query.include?('BadPassword')
       flash[:notice] = "Logged in successfully"
+      redirect_to(cas_url + '?service=' + new_session_url + '&username=' + params[:username] + '&password=' + params[:password])
     else
       note_failed_signin
       @login       = params[:login]
