@@ -3,6 +3,7 @@
   <head>
     <title>Global Tech Dev &raquo; Home</title>
     <%= stylesheet_link_tag 'style' %> 
+    <%= javascript_include_tag :defaults, :cache => true %>
   </head>
 
   <body class="<%= 'index' if controller.controller_name == 'dashboard' %><%= 'page_login' if controller.controller_name == 'sessions' %>">
@@ -24,8 +25,8 @@
   </div>
   <div class="bannerBot">
     <ul class="menu">
-      <li class="<%= 'selected' if controller.action_name == 'home' %> Home"><a href="/dashboard/home"><span>Home</span></a></li>
-      <li class="<%= 'selected' if controller.action_name == 'about' %> About"><a href="/dashboard/about"><span>About</span></a></li>
+      <li class="<%= 'selected' if controller.action_name == 'home' %> Home"><a href="/"><span>Home</span></a></li>
+      <li class="<%= 'selected' if controller.action_name == 'about' %> About"><a href="/about"><span>About</span></a></li>
       <li class="<%= 'selected' if controller.controller_name == 'projects' %> Projects"><a href="/projects"><span>Projects</span></a></li>
       <%- if current_user -%>
       <li class="<%= 'selected' if controller.controller_name == 'users'  %> Profile"><% link_to(current_user) do %><span>Profile</span><%- end -%></li>

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByCookieToken
 
+  validates_presence_of :first
   validates_format_of       :first,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :first,     :maximum => 100
 
@@ -14,6 +15,8 @@ class User < ActiveRecord::Base
 
   has_many :project_members
   has_many :projects, :through => :project_members
+  
+  has_one :profile_picture
   
 
 

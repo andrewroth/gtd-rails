@@ -11,18 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20090125233008) do
 
-  create_table "profile_pictures", :force => true do |t|
-    t.integer "person_id"
-    t.integer "parent_id"
-    t.integer "size"
-    t.integer "height"
-    t.integer "width"
-    t.string  "content_type"
-    t.string  "filename"
-    t.string  "thumbnail"
-    t.date    "uploaded_date"
-  end
-
   create_table "project_members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"

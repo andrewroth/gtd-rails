@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :get_user, :only => [:show, :edit, :update]
+  before_filter :check_permissions, :only => [:edit, :update]
   
   def show
-    @user = User.find(params[:id])
   end
   # render new.rhtml
   def new
@@ -9,7 +10,22 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+  end
+  
+  def update
+    if params[:profile_picture] && params[:profile_picture][:uploaded_data].present?
+      @user.profile_picture ? @user.profile_picture.update_attributes(params[:profile_picture]) : 
+                                  @user.profile_picture = ProfilePicture.new(params[:profile_picture])
+    end
+    if @user.update_attributes(params[:user])
+      respond_to do |wants|
+        wants.html { redirect_to @user }
+      end
+    else
+      respond_to do |wants|
+        wants.html { render :action => :edit }
+      end
+    end
   end
  
   def create
@@ -29,4 +45,16 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  protected
+    def get_user
+      @user = User.find(params[:id])
+    end
+    
+    def check_permissions
+      unless @user == current_user
+        redirect_to @user
+        return false
+      end
+    end
 end

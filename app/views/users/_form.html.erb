@@ -1,9 +1,49 @@
-guid: <%= f.text_field :guid %><br/>
-last: <%= f.text_field :last %><br/>
-first: <%= f.text_field :first %><br/>
-skillkeywords: <%= f.text_field :skillkeywords %><br/>
-created: <%= f.date_select :created %><br/>
-bio: <%= f.text_area :bio %><br/>
-active: <%= f.check_box :active %><br/>
-email: <%= f.text_field :email %><br/>
-profilepicture: <%= f.text_field :profilepicture %><br/>
+<td class="left">
+  <div class="indent">
+    <div class="rabbitTrail">edit profile</div>
+    <div class="topBox">
+    	<h1 class="title">Edit Profile &raquo; <%= @user.full_name %></h1>
+
+    	<div class="text">
+    		<% form_for(@user, :html => {:multipart => true}) do |f| %>
+    	  <%= f.error_messages %>
+    			<table>
+    				<tbody>
+    					<tr>
+    					  <td class="right_text">Profile picture</td>		
+    					  <td><%= image_tag(@user.profile_picture.public_filename(:medium)) if @user.profile_picture %></td>
+    					</tr>
+    					<tr>
+    					  <td class="right_text">&nbsp;</td>				
+    					  <td>
+    					    <%- fields_for :profile_picture, @user.profile_picture do |pf| -%>
+      					    <%= pf.file_field :uploaded_data, :size => '30px' %>
+    					    <%- end -%>
+    					  </td>
+    					</tr>
+
+    					<tr><td class="right_text">First Name</td>			<td><%= f.text_field(:first, :size => 40) %></td></tr>
+    					<tr><td class="right_text">Last Name</td>			<td><%= f.text_field(:last, :size => 40) %></td></tr>
+    					<tr><td class="right_text">Email</td>				<td><%= f.text_field(:email, :size => 40) %></td></tr>
+    					<tr><td class="right_text">Bio</td>					<td><%= f.text_area(:bio, :cols => 41, :rows => 3) %></td></tr>
+
+    					<tr><td class="right_text">Skill keywords</td>		<td><%= f.text_field(:skillkeywords, :size => 40) %></td></tr>
+    					<tr>
+    					  <td class="right_text" style="padding-top:4px">Active membership?</td>	
+    					  <td style="padding-top:4px">&nbsp;
+    						Yes <%= f.radio_button(:active, true) %>
+    						No  <%= f.radio_button(:active, false) %>
+    					</td></tr>
+
+    				</tbody>
+    			</table>
+          <br/>
+    			<div class="inputFake">
+    			  <%= link_to_function('Save Changes', "$('div.text form').submit();") %>
+    			</div>
+    		<%- end -%>
+    	</div>
+    <br/>
+    </div>
+  </div>
+</td>
