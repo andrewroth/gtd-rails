@@ -3,6 +3,8 @@
 					  <img src="images/page1_img3.jpg" alt="profile picture" />
   					<div class="memberInfo">
   						<%= link_to(project_member.user.full_name, project_member.user) %> (<%= project_member.role %>)
+  						<%= link_to('Leave Project', project_project_member_path(@project, project_member), :method => :delete) if project_member.user == current_user && project_member.role != 'Owner' %>
+  						<%= link_to('Kick off', project_project_member_path(project_member.project, project_member), :method => :delete) if @project.creator_id == current_user.id && project_member.user != current_user %>
   						<div class="memberSince">Member since: <%= project_member.created_at.to_s(:short_ordinal) %></div>
   						<div class="bio">
   						  <%= project_member.user.bio %>
