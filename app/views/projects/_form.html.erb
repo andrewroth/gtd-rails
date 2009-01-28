@@ -1,0 +1,31 @@
+      <table><tbody>
+        <tr><td class="right_text">Name</td><td><%= text_field_tag 'ignored_owner', 'Andrew Roth', :disabled => true %></td></tr>
+        <tr><td class="right_text">Project Name</td><td><%= f.text_field :name, :size => nil %></td></tr>
+        <tr><td class="right_text">Purpose</td><td><%= f.text_field :purpose, :size => nil %></td></tr>
+        <tr><td class="right_text">Project Type</td><td>
+          <%= f.select :type, %w(Idea Funded Volunteer Other) %>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Description</td><td><%= f.text_area :description, :rows => nil, :cols => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Skills Needed</td><td><%= f.text_area :purpose, :rows => nil, :cols => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Resources Needed</td><td><%= f.text_area :type, :rows => nil, :cols => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Estimated days</td><td><%= f.text_field :estimated_days, :size => 5 %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Status</td><td><%= f.text_field :status, :size => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Scope</td><td><%= f.select :scope, %w(Small Medium Large) %></td></tr>
+        <tr><td class="right_text">Seeking volunteers?</td><td>
+        Yes <%= f.radio_button :is_seeking_volunteers, true %>
+        No <%= f.radio_button :is_seeking_volunteers, false %>
+        </td></tr>
+        <tr><td class="right_text">Are you Hiring?</td><td>
+        Yes <%= f.radio_button :is_hiring, true %>
+        No <%= f.radio_button :is_hiring, false %>
+        </td></tr>
+        <tr><td class="right_text">Is this project ACTIVE?</td><td>
+        Yes <%= f.radio_button :active, true %>
+        No <%= f.radio_button :active, false %>
+        </td></tr>
+        <tr><td class="right_text">Project website</td><td><%= f.text_field :website %></td></tr>
+        <tr><td class="right_text">Hosting home</td><td><%= f.select :hosting_home,
+             [ 'Github', [ 'Google Code', 'GoogleCode' ], [ 'Source Forge', 'SourceForge' ], 'Other' ], 
+             { :prompt => '[Select]' }, {}
+          %>
+        </select></td></tr>
+      </tbody></table>
