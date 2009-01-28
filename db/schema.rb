@@ -11,6 +11,20 @@
 
 ActiveRecord::Schema.define(:version => 20090125233008) do
 
+  create_table "profile_pictures", :force => true do |t|
+    t.integer "user_id"
+    t.integer "parent_id"
+    t.integer "size"
+    t.integer "height"
+    t.integer "width"
+    t.string  "content_type"
+    t.string  "filename"
+    t.string  "thumbnail"
+    t.date    "uploaded_date"
+  end
+
+  add_index "profile_pictures", ["user_id"], :name => "index_profile_pictures_on_user_id"
+
   create_table "project_members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -22,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20090125233008) do
   end
 
   add_index "project_members", ["project_id", "user_id"], :name => "index_project_members_on_project_id_and_user_id", :unique => true
-  add_index "project_members", ["user_id"], :name => "user_id"
+  add_index "project_members", ["user_id"], :name => "index_project_members_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.boolean  "active",                               :default => true
