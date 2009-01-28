@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_filter :login_required, :only => [ :new, :create ]
+
   # GET /projects
   # GET /projects.xml
   def index

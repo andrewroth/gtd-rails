@@ -1,12 +1,22 @@
-<h1>Editing project</h1>
+<td class="left"><div class="indent"><div class="rabbitTrail">create project</div>
+<div class="topBox">
+  <h1 class="title">Editing <%= @project.name %></h1>
+  <div class="links">
+    <a href="/projects">Back to all projects</a>
+  </div>
+</div>
+<div class="lowerBox">
+  <div class="text">
+    <% form_for @project do |f| %>
+      <%= render :partial => 'form', :locals => { :f => f } %>
 
-<% form_for(@project) do |f| %>
-  <%= f.error_messages %>
+      <div class="inputFake">
+        <%= link_to_function 'Save Changes', "document.getElementById(\"edit_project_#{@project.id}\").submit();" %>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+</div></td>
+<%= render :partial => 'dashboard/right_bar' %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>

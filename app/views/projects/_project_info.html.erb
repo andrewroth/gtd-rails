@@ -4,8 +4,13 @@
     					<tr><th colspan="2"></th></tr> <!-- important for the top border -->
     				</thead>
     				<tfoot>
-    					<tr><td colspan="2"><div class="tableLinks"><%= link_to('Get Involved', new_project_project_member_path(@project)) %></div></td></tr>
-
+    					<tr><td colspan="2"><div class="tableLinks">
+                <div>
+                  <%- if @project.creator == @user -%>
+                    <%= link_to('Edit Project', edit_project_path(@project)) %>
+                  <%- end -%>
+                <%= link_to('Get Involved', new_project_project_member_path(@project)) %></div></td></tr>
+                </div> 
     				</tfoot>
             <tbody>
               <tr><td class="col1">Purpose</td>     <td class="col2"><%= @project.purpose %></td></tr>
