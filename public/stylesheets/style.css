@@ -311,13 +311,17 @@ form table td {
 	padding:3px 0;
 	}
 
-table input, textarea {
+table input, textarea, select {
 	padding:1px 2px;
 	border:1px solid;
 	color:#555;
 	font-size:13px;
 	line-height:1.4em;
 	}
+
+select {
+	padding:0px;
+}
 
 .inputFake {
 	padding:6px 0 3px;
