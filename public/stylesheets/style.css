@@ -721,3 +721,8 @@ ul.temp a:hover {
   font-size: 12px;
   list-style: none;
 }
+
+.notice {
+  padding: 5px;
+  color: red;
+}

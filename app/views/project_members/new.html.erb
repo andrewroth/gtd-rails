@@ -27,8 +27,7 @@
     				<tr><td class="col1">Skills</td><td><input type="text" name="skills" size="40" value="" /></td></tr>
     		</table>
     		<div class="inputFake">
-
-    			<a href="/user/projectSignup.php" onclick="document.getElementById('new_project_member').submit(); return false;">Sign Up</a>
+          <%= link_to_function 'Sign Up', "document.getElementById(\"new_project_member\").submit();" %>
     		</div>
     	<%- end -%>
     	</div>

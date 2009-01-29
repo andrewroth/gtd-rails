@@ -1,10 +1,13 @@
 class ProjectsController < ApplicationController
-  before_filter :login_required, :only => [ :new, :create ]
+  before_filter :login_required, :only => [ :new, :create, :edit ]
+  before_filter :get_project, :only => [ :show, :edit, :update, :destroy ]
+  before_filter :get_projects, :only => [ :index, :show, :new ]
+  before_filter :set_project_ownership, :only => [ :show, :edit, :update ]
+  before_filter :ensure_project_ownership, :only => [ :update ]
 
   # GET /projects
   # GET /projects.xml
   def index
-    @projects = Project.find(:all, :order => "created_at desc")
     @project = @projects.first
     @index = @projects.index(@project)
     respond_to do |format|
@@ -16,8 +19,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @projects = Project.find(:all, :order => "created_at desc")
-    @project = Project.find(params[:id])
     @index = @projects.index(@project)
     respond_to do |format|
       format.html # show.html.erb
@@ -45,6 +46,7 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+    @project.creator = current_user
 
     respond_to do |format|
       if @project.save
@@ -61,8 +63,6 @@ class ProjectsController < ApplicationController
   # PUT /projects/1
   # PUT /projects/1.xml
   def update
-    @project = Project.find(params[:id])
-
     respond_to do |format|
       if @project.update_attributes(params[:project])
         flash[:notice] = 'Project was successfully updated.'
@@ -78,7 +78,6 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
 
     respond_to do |format|
@@ -86,4 +85,11 @@ class ProjectsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  protected
+
+    def get_project() @project = Project.find(params[:id]) end
+    def get_projects() @projects = Project.find(:all, :order => "created_at desc") end
+    def set_project_ownership() @owner = self.current_user == @project.creator end
+    def ensure_project_ownership() flash[:notice] = "You don't have permission."; redirect_to projects_url unless @owner end
 end
