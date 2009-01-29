@@ -6,8 +6,8 @@
         <tr><td class="right_text">Project Type</td><td>
           <%= f.select :type, %w(Idea Funded Volunteer Other) %>
         <tr><td valign="top" nowrap="nowrap" class="right_text">Description</td><td><%= f.text_area :description, :rows => nil, :cols => nil %></td></tr>
-        <tr><td valign="top" nowrap="nowrap" class="right_text">Skills Needed</td><td><%= f.text_area :purpose, :rows => nil, :cols => nil %></td></tr>
-        <tr><td valign="top" nowrap="nowrap" class="right_text">Resources Needed</td><td><%= f.text_area :type, :rows => nil, :cols => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Skills Needed</td><td><%= f.text_area :skills_needed, :rows => nil, :cols => nil %></td></tr>
+        <tr><td valign="top" nowrap="nowrap" class="right_text">Resources Needed</td><td><%= f.text_area :resources_needed, :rows => nil, :cols => nil %></td></tr>
         <tr><td valign="top" nowrap="nowrap" class="right_text">Estimated days</td><td><%= f.text_field :estimated_days, :size => 5 %></td></tr>
         <tr><td valign="top" nowrap="nowrap" class="right_text">Status</td><td><%= f.text_field :status, :size => nil %></td></tr>
         <tr><td valign="top" nowrap="nowrap" class="right_text">Scope</td><td><%= f.select :scope, %w(Small Medium Large) %></td></tr>
