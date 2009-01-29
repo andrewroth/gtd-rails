@@ -6,7 +6,7 @@
     				<tfoot>
     					<tr><td colspan="2"><div class="tableLinks">
                 <div>
-                  <%- if @project.creator == @user -%>
+                  <%- if @owner %>
                     <%= link_to('Edit Project', edit_project_path(@project)) %>
                   <%- end -%>
                 <%= link_to('Get Involved', new_project_project_member_path(@project)) %></div></td></tr>

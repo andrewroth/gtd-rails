@@ -7,13 +7,17 @@
 </div>
 <div class="lowerBox">
   <div class="text">
-    <% form_for @project do |f| %>
-      <%= render :partial => 'form', :locals => { :f => f } %>
-
-      <div class="inputFake">
-        <%= link_to_function 'Save Changes', "document.getElementById(\"edit_project_#{@project.id}\").submit();" %>
-      </div>
-    <% end %>
+    <% form_for @project do |f| -%>
+      <% if @owner -%>
+        <%= render :partial => 'form', :locals => { :f => f } %>
+        
+        <div class="inputFake">
+          <%= link_to_function 'Save Changes', "document.getElementById(\"edit_project_#{@project.id}\").submit();" %>
+        </div>
+      <% else -%>
+        Sorry, only the creator <%= @project.creator.first %> <%= @project.creator.last %> can edit this project.
+      <% end -%>
+    <% end -%>
   </div>
 </div>
 
