@@ -1,0 +1,83 @@
+.project
+  %table.common_TABLE
+    %thead
+      %tr
+        %th{ :colspan => "2" }
+      /
+        important for the top border
+  %tfoot
+    %tr
+      %td{ :colspan => "2" }
+        .tableLinks
+          %div
+            - if @owner
+              = link_to('Edit Project', edit_project_path(@project))
+            = link_to('Get Involved', new_project_project_member_path(@project))
+%tbody
+  %tr
+    %td.col1
+      Purpose
+    %td.col2
+      = @project.purpose
+  %tr
+    %td.col1
+      Created
+    %td.col2
+      = @project.created_at.to_s(:short_ordinal)
+  %tr
+    %td.col1
+      Project Type
+    %td.col2
+      = @project.type
+  %tr
+    %td.col1
+      Description
+    %td.col2
+    = @project.description
+  %tr
+    %td.col1
+      Skills Needed
+    %td.col2
+      = @project.skills_needed
+  %tr
+    %td.col1
+      Resources Needed
+    %td.col2
+    = @project.resources_needed
+  %tr
+    %td.col1
+      Estimated Length
+    %td.col2
+      = @project.estimated_days
+      days
+  %tr
+    %td.col1
+      Status
+    %td.col2
+      = @project.status
+  %tr
+    %td.col1
+      Scope
+    %td.col2
+      = @project.scope
+  %tr
+    %td.col1
+      Seeking Volunteers
+    %td.col2
+      = @project.seeking_volunteers_human
+  %tr
+    %td.col1
+      Hiring
+    %td.col2
+      = @project.hiring_human
+  %tr
+    %td.col1
+      Website
+    %td.col2
+      %a{ :href => @project.website, :target => "_blank" }
+        = @project.website
+  %tr.last
+    %td.col1
+      Hosting home
+    %td.col2
+      = @project.hosting_home

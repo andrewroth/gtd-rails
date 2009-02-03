@@ -1,0 +1,17 @@
+%td.right
+  - unless current_user
+    .indent.alt
+      .text
+        %a.bigButton{ :href => "/signup" }
+          %span
+            Sign Up to Get Involved
+  .indent
+    %img{ :src => "/images4/GTD_right_bgTop.gif", :alt => "" }
+    .text
+      %h2.title
+        Recent Projects
+      = render :partial => Project.find(:all, :order => 'created_at desc', :limit => 3)
+      .links
+        %a{ :href => "/projects" }
+          View All
+    %img{ :src => "/images4/GTD_right_bgBot.gif", :alt => "" }

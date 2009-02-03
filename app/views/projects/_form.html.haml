@@ -1,0 +1,87 @@
+= error_messages_for 'project'
+%table
+  %tbody
+    %tr
+      %td.right_text
+        Name
+      %td
+        = text_field_tag 'ignored_owner', current_user.full_name, :disabled => true
+    %tr
+      %td.right_text
+        Project Name
+      %td
+        = f.text_field :name, :size => nil
+    %tr
+      %td.right_text
+        Purpose
+      %td
+        = f.text_field :purpose, :size => nil
+    %tr
+      %td.right_text
+        Project Type
+    %td
+      = f.select :type, %w(Idea Funded Volunteer Other)
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Description
+        %td
+          = f.text_area :description, :rows => nil, :cols => nil
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Skills Needed
+        %td
+          = f.text_area :skills_needed, :rows => nil, :cols => nil
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Resources Needed
+        %td
+          = f.text_area :resources_needed, :rows => nil, :cols => nil
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Estimated days
+        %td
+          = f.text_field :estimated_days, :size => 5
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Status
+        %td
+          = f.text_field :status, :size => nil
+      %tr
+        %td.right_text{ :nowrap => "nowrap", :valign => "top" }
+          Scope
+        %td
+          = f.select :scope, %w(Small Medium Large)
+      %tr
+        %td.right_text
+          Seeking volunteers?
+        %td
+          Yes
+          = f.radio_button :is_seeking_volunteers, true
+          No
+          = f.radio_button :is_seeking_volunteers, false
+      %tr
+        %td.right_text
+          Are you Hiring?
+        %td
+          Yes
+          = f.radio_button :is_hiring, true
+          No
+          = f.radio_button :is_hiring, false
+      %tr
+        %td.right_text
+          Is this project ACTIVE?
+        %td
+          Yes
+          = f.radio_button :active, true
+          No
+          = f.radio_button :active, false
+      %tr
+        %td.right_text
+          Project website
+        %td
+          = f.text_field :website
+      %tr
+        %td.right_text
+          Hosting home
+        %td
+          = f.select :hosting_home, [ 'Github', [ 'Google Code', 'GoogleCode' ], [ 'Source Forge', 'SourceForge' ], 'Other' ],  { :prompt => '[Select]' }, {}

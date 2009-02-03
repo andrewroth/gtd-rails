@@ -1,0 +1,80 @@
+%td.left
+  .rabbitTrail
+    profile
+  .topBox
+    %h1.title
+      = @user.full_name
+      = link_to('Edit Profile', edit_user_path(current_user)) if @user == current_user
+    .profile
+      %table.common_TABLE
+        %tbody
+          %tr
+            %td.col1
+              Profile Picture
+            %td.col2
+              = image_tag(@user.profile_picture.public_filename(:medium)) if @user.profile_picture
+          %tr
+            %td.col1
+              Joined
+            %td.col2
+              = @user.created_at.to_s(:short_ordinal)
+          %tr
+            %td.col1
+              Email
+            %td.col2
+              %a{ :href => "mailto:#{@user.email}" }
+                = @user.email
+          %tr
+            %td.col1
+              Bio
+            %td.col2
+              = @user.bio
+          %tr
+            %td.col1
+              Skills
+              %br
+                (comma separated)
+            %td.col2
+              = @user.skillkeywords
+%td.right
+  .indent.alt
+    .text
+      %h2.title
+  .indent
+    %img{ :src => "/images4/GTD_right_bgTop.gif", :alt => "" }
+    .text
+      %h2.title
+        Projects
+        = @user == current_user ? "you're" : "#{@user.full_name} is"
+        a member of
+      %ul
+        - @user.projects.each do |project|
+          %li
+            - link_to(project) do
+              %h4.date
+                = project.created_at.to_s(:numeric)
+              %span.font_1
+                = project.name
+              \&raquo;
+            = project.description
+            .line2
+    %img{ :src => "/images4/GTD_right_bgBot.gif", :alt => "" }
+  - if @user == current_user
+    .indent
+      %img{ :src => "/images4/GTD_right_bgTop.gif", :alt => "" }
+      .text
+        %h2.title
+          Projects you might like
+        - if current_user.skillkeywords.blank?
+          Add 'skills' to your profile to find possible matches.
+        - else
+          %ul
+            /
+              <li>
+              <a href="/projects.php?id=<?php echo $p['id']; ?>">
+              <h4 class="date"><?php echo date("m d Y", strtotime($p['created'])); ?></h4>
+              <span class="font_1"><?php echo $p['name']; ?></span> &amp;raquo;</a> <?php echo $p['description']; ?>
+              <br/><span class="font_2">(score = <?php echo $p['score']?>)</span>
+              <div class="line2"></div>
+              </li>
+      %img{ :src => "/images4/GTD_right_bgBot.gif", :alt => "" }

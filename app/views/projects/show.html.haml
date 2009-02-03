@@ -1,0 +1,44 @@
+%td.left
+  .indent
+    .rabbitTrail
+      projects
+    .topBox
+      - if @project
+        %h1.title
+          %div
+            - unless @project == @projects.first
+              = link_to('« Previous', @projects[@index - 1])
+            - unless @project == @projects.last
+              = link_to('Next »', @projects[@index + 1])
+          = @project.name
+        .text
+          = render :partial => 'project_info'
+    .lowerBox
+      - if @project
+        %h1.title
+          Project members
+        .text
+          - if current_user
+            = render :partial => @project.project_members
+          - else
+            %p
+              There are
+              = pluralize( @project.project_members.length, 'person')
+              involved in this project.
+            %p
+              %a{ :href => "/login" }
+                Login
+              to see them.
+%td.right
+  .indent.alt
+    .text
+      = link_to('<span>Create a New Project</span>', new_project_path, :class => "bigButton")
+  .indent
+    %img{ :src => "/images4/GTD_right_bgTop.gif", :alt => "" }
+    .text
+      %h2.title
+        Recent Projects
+      = render :partial => @projects
+      .links
+        = link_to('Create a New Project', new_project_path)
+    %img{ :src => "/images4/GTD_right_bgBot.gif", :alt => "" }

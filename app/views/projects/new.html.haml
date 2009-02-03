@@ -1,0 +1,26 @@
+%td.left
+  .indent
+    .rabbitTrail
+      create project
+    .topBox
+      %h1.title
+        Create a new project
+      .text
+        %p
+          Go ahead. Change the World.  Please fill out all fields completely before hitting
+          %q
+            submit
+          \.  Have questions?
+          %a{ :href => "/contact" }
+            Contact us
+          \.
+      .links
+        %a{ :href => "/projects" }
+          Back to all projects
+    .lowerBox
+      .text
+        - form_for @project do |f|
+          = render :partial => 'form', :locals => { :f => f }
+          .inputFake
+            = link_to_function 'Create Project', 'document.getElementById("new_project").submit();'
+= render :partial => 'dashboard/right_bar'

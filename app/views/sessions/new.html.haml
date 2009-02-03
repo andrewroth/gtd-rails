@@ -1,0 +1,35 @@
+%td.utility
+  .indent
+    .rabbitTrail
+      login
+    .topBox
+      %h1.title
+        Login
+        %span.subtitle
+          You must login to continue!
+      .text
+        - if flash[:error]
+          %p
+            = flash[:error]
+        %p
+          Enter your email and password below, or
+          %a{ :href => "/signup" }
+            click here to sign up
+          \.
+        - form_tag '/sessions/create', :id => 'login' do
+          %table.form_TABLE
+            %tr
+              %td.col1
+                %label
+                  E-mail:
+              %td.col2
+                %input{ :name => "username", :size => "40", :type => "text" }
+            %tr
+              %td.col1
+                %label
+                  Password:
+              %td.col2
+                %input{ :name => "password", :size => "40", :type => "password" }
+          .inputFake
+            %a.link{ :href => "#", :onclick => "document.getElementById('login').submit(); return false;" }
+              Login

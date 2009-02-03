@@ -1,0 +1,41 @@
+%td.left
+  .indent
+    .rabbitTrail
+      home
+    .topBox
+      %h1.title
+        Welcome to Global Tech Dev
+        %span.subtitle
+          Use your programming skills to change the world!
+      .text
+        %p
+          GTD is a site that allows members to connect on what projects they are working on.
+        %p
+          The purpose of GTD is to help you connect with other people interested in expanding ministry ideas around the globe.
+        %p
+          %a{ :href => "/users/login" }
+            Login
+          or
+          %a{ :href => "/users/new" }
+            Signup
+          to get involved.
+      .links
+        %a{ :href => "/about" }
+          Read more
+        %a{ :href => "/users/new" }
+          Get Involved
+    .lowerBox
+      %h1.title
+        What can I do?
+      %ul.links_mid
+        %li.links_mid1
+          %span
+            Collaborate on a project.
+            %a{ :href => "/projects" }
+              join an existing project
+        %li.links_mid2
+          %span
+            Have your own idea?
+            %a{ :href => "/projects/new" }
+              create a new project
+= render :partial => 'right_bar'

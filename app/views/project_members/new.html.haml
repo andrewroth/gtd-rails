@@ -1,0 +1,57 @@
+%td.left
+  .indent
+    .rabbitTrail
+      %a{ :href => "/projects" }
+        projects
+      \// project signup
+    .topBox
+      .indent
+        %h1.title
+          Project Info
+        .text
+          %h3.title
+            = @project.name
+          %p
+            = @project.description
+        .links
+          %a{ :href => "/projects" }
+            Back to all projects
+    .lowerBox
+      %h1.title
+        Sign Up For This Project
+      .text
+        - form_for [@project, @project_member] do |f|
+          %table
+            %tbody
+              %tr
+                %td.col1
+                  Name
+                %td
+                  %input{ :name => "name", :size => "40", :type => "text", :value => current_user.full_name, :disabled => "disabled" }
+              %tr
+                %td.col1
+                  Email
+                %td
+                  %input{ :name => "email", :size => "40", :type => "text", :value => current_user.email, :disabled => "disabled" }
+              %tr
+                %td.col1
+                  Skills
+                %td
+                  %input{ :name => "skills", :size => "40", :type => "text", :value => "" }
+          .inputFake
+            = link_to_function 'Sign Up', "document.getElementById(\"new_project_member\").submit();"
+%td.right
+  - unless @project.project_members.empty?
+    .indent
+      %img{ :src => "/images4/GTD_right_bgTop.gif", :alt => "" }
+      .text
+        %h2.title
+          Already working on this project:
+        %ul.list_1
+          - @project.project_members.each do |pm|
+            %li
+              = link_to(pm.user.full_name, pm.user)
+              (
+              = pm.role
+              )
+      %img{ :src => "/images4/GTD_right_bgBot.gif", :alt => "" }

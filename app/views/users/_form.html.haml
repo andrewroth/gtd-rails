@@ -1,0 +1,62 @@
+%td.left
+  .indent
+    .rabbitTrail
+      edit profile
+    .topBox
+      %h1.title
+        Edit Profile &raquo;
+        = @user.full_name
+      .text
+        - form_for(@user, :html => {:multipart => true}) do |f|
+          = f.error_messages
+          %table
+            %tbody
+              %tr
+                %td.right_text
+                  Profile picture
+                %td
+                  = image_tag(@user.profile_picture.public_filename(:medium)) if @user.profile_picture
+              %tr
+                %td.right_text
+                  \&nbsp;
+                %td
+                  - fields_for :profile_picture, @user.profile_picture do |pf|
+                    = pf.file_field :uploaded_data, :size => '30px'
+              %tr
+                %td.right_text
+                  First Name
+                %td
+                  = f.text_field(:first, :size => 40)
+              %tr
+                %td.right_text
+                  Last Name
+                %td
+                  = f.text_field(:last, :size => 40)
+              %tr
+                %td.right_text
+                  Email
+                %td
+                  = f.text_field(:email, :size => 40)
+              %tr
+                %td.right_text
+                  Bio
+                %td
+                  = f.text_area(:bio, :cols => 41, :rows => 3)
+              %tr
+                %td.right_text
+                  Skill keywords
+                %td
+                  = f.text_field(:skillkeywords, :size => 40)
+              %tr
+                %td.right_text{ :style => "padding-top:4px" }
+                  Active membership?
+                %td{ :style => "padding-top:4px" }
+                  \&nbsp;
+                  Yes
+                  = f.radio_button(:active, true)
+                  No
+                  = f.radio_button(:active, false)
+          %br
+          .inputFake
+            = link_to_function('Save Changes', "$('div.text form').submit();")
+      %br

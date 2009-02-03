@@ -1,0 +1,52 @@
+.indent
+  .rabbitTrail
+    contact
+  .topBox
+    %h1.title
+      Contact Us!
+    .text
+      %h5
+        address
+      %p
+        100 Lake Hart Dr
+        %br
+        Orlando, FL 32828
+      %h5
+        phone number
+      %p
+        +1 (407) 826-2000
+      %h5
+        email
+      %p
+        %a{ :href => "mailto:mikethacker@globaltechdev.org" }
+          Click here to email us!
+.lowerBox
+  %h1.title
+    Contact Form
+  .text
+    = form_tag '/dashboard/send_contact', :id => 'form'
+    %table
+      %tbody
+        %tr
+          %td.right_text
+            Name
+          %td
+            %input{ :name => "name", :type => "text" }
+        %tr
+          %td.right_text
+            Email
+          %td
+            %input{ :name => "email", :type => "text" }
+        %tr
+          %td.right_text
+            Phone
+          %td
+            %input{ :name => "phone", :type => "text" }
+        %tr
+          %td.right_text
+            Message
+          %td
+            = text_area_tag 'message', {}, :rows => 8, :cols => 40, :name => 'message'
+    .inputFake
+      %a{ :href => "#", :onclick => "document.getElementById('form').submit()" }
+        Send

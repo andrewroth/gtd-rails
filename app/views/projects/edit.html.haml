@@ -1,0 +1,24 @@
+%td.left
+  .indent
+    .rabbitTrail
+      create project
+    .topBox
+      %h1.title
+        Editing
+        = @project.name
+      .links
+        %a{ :href => "/projects" }
+          Back to all projects
+    .lowerBox
+      .text
+        - form_for @project do |f|
+          - if @owner
+            = render :partial => 'form', :locals => { :f => f }
+            .inputFake
+              = link_to_function 'Save Changes', "document.getElementById(\"edit_project_#{@project.id}\").submit();"
+          - else
+            Sorry, only the creator
+            = @project.creator.first
+            = @project.creator.last
+            can edit this project.
+= render :partial => 'dashboard/right_bar'

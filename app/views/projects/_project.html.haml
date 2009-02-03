@@ -1,0 +1,9 @@
+%h3.date
+  = project.created_at.to_s(:numeric)
+.projectBox
+  - link_to(project) do
+    %b
+      = project.name
+    %br
+    %span
+      = project.description

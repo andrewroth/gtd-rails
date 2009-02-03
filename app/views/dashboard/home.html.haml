@@ -1,0 +1,15 @@
+%td.left
+  .indent
+    .rabbitTrail
+      welcome
+    .topBox
+      %h1.title
+        Welcome to GTD,
+        = current_user.first
+        = current_user.last
+      .links
+        %a{ :href => "/contact" }
+          Contact Us
+        %a{ :href => "/logout" }
+          Logout
+= render :partial => 'right_bar'

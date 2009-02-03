@@ -1,0 +1,36 @@
+.indent
+  .rabbitTrail
+    signup
+  .topBox
+    %h1.title
+      Sign Up
+    .text
+      - form_for @user do |f|
+        %table.form_TABLE
+          %tbody
+            %tr
+              %td.col1
+                %label
+                  First Name:
+              %td.col2
+                = f.text_field :first, :size => 30
+            %tr
+              %td.col1
+                %label
+                  Last Name:
+              %td.col2
+                = f.text_field :last, :size => 30
+            %tr
+              %td.col1
+                %label
+                  E-mail:
+              %td.col2
+                = f.text_field :email, :size => 30
+            %tr
+              %td.col1
+                %label
+                  Password:
+              %td.col2
+                = password_field_tag :pass, {}, :size => 30
+        .inputFake
+          = link_to_function 'Sign Up', 'document.getElementById("new_user").submit();'
