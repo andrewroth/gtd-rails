@@ -55,9 +55,9 @@
                 = yield
         .footer
           %span.validator
-            %a{ :href => "http://validator.w3.org/check?uri=http://www.globaltechdev.org/" }
+            %a{ :href => "http://validator.w3.org/check?uri=#{request.url}" }
               XHTML
-            %a{ :href => "http://jigsaw.w3.org/css-validator/validator?uri=http://www.globaltechdev.org/style.css" }
+            %a{ :href => "http://jigsaw.w3.org/css-validator/validator?uri=#{request.url}stylesheets/style.css" }
               CSS
           %span.copyright
             Copyright &copy;
